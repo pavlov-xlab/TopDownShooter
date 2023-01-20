@@ -26,7 +26,7 @@ namespace TopDownShooter
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			if (m_agent.isStopped)
+			if (m_agent.remainingDistance <= m_agent.stoppingDistance)
 			{
 				m_agent.destination = GetRandomPoint();
 			}
