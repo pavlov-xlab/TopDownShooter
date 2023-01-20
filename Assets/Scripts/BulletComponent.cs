@@ -23,7 +23,8 @@ namespace TopDownShooter
 
 		private void OnCollisionEnter(Collision other)
 		{
-			if (other.gameObject.TryGetComponent(out HealthComponent health))
+			var health = other.gameObject.GetComponentInParent<HealthComponent>();
+			if (health)
 			{
 				health.TakeDamage(m_damage);
 			}

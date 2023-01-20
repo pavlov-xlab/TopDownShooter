@@ -9,7 +9,7 @@ namespace TopDownShooter
 	{
 		[SerializeField] private NavMeshSurface m_surface;
 
-		void Start()
+		private void Awake()
 		{
 			m_surface.BuildNavMesh();
 		}
