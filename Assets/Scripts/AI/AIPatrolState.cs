@@ -10,6 +10,7 @@ namespace TopDownShooter
 	{
 		private IReadOnlyList<Vector3> m_points;
 		private NavMeshAgent m_agent;
+		private Animator m_animator;
 
 		private Vector3 GetRandomPoint()
 		{
@@ -18,6 +19,7 @@ namespace TopDownShooter
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
+			m_animator = animator;
 			var enemy = animator.GetComponent<Enemy>();
 			m_agent = animator.GetComponent<NavMeshAgent>();
 			m_points = enemy.patrolPoints.GetPoints();
@@ -28,7 +30,7 @@ namespace TopDownShooter
 		{
 			if (m_agent.remainingDistance <= m_agent.stoppingDistance)
 			{
-				m_agent.destination = GetRandomPoint();
+				m_animator.SetBool("isPatrol", false);
 			}
 		}
 
