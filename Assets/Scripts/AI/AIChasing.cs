@@ -2,20 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TopDownShooter
+namespace TopDownShooter.AI
 {
-
-
-
 	public class AIChasing : StateMachineBehaviour
 	{
-		private Animator m_animator;
 		private Enemy m_enemy;
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			m_animator = animator;
-			m_enemy = m_animator.GetComponent<Enemy>();
+			m_enemy = animator.GetComponent<Enemy>();
 			m_enemy.Goto(m_enemy.target.position);
 		}
 

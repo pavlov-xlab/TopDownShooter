@@ -1,28 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AIIdleState : StateMachineBehaviour
+namespace TopDownShooter.AI
 {
-	private float m_timeStart = 0f;
-	private float m_timeNextState = 0f;
-
-	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	public static class AIStateId
 	{
-		m_timeStart = Time.time;
-		m_timeNextState = Random.Range(2f, 5f);
+		public static readonly int Idle = Animator.StringToHash("Idle");
+		public static readonly int IsPatrol = Animator.StringToHash("IsPatrol");
+		public static readonly int IsChasing = Animator.StringToHash("IsChasing");
 	}
-
-	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	
+	
+	public class AIIdleState : StateMachineBehaviour
 	{
-		if (Time.time > m_timeStart + m_timeNextState)
+		[SerializeField] private float m_randomMin = 1f;
+		[SerializeField] private float m_randomMax = 3f;
+		private float m_timeStart = 0f;
+		private float m_timeNextState = 0f;
+
+		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			animator.SetBool("isPatrol", true);
+			m_timeStart = Time.time;
+			m_timeNextState = Random.Range(m_randomMin, m_randomMax);
 		}
-	}
 
-	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-	{
-
+		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+		{
+			if (Time.time > m_timeStart + m_timeNextState)
+			{
+				animator.SetBool(AIStateId.IsPatrol, true);
+			}
+		}
 	}
 }

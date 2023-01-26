@@ -1,16 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-namespace TopDownShooter
+namespace TopDownShooter.AI
 {
-
 	public class AIPatrolState : StateMachineBehaviour
 	{
 		private IReadOnlyList<Vector3> m_points;
-		private NavMeshAgent m_agent;
-		private Animator m_animator;
+		private Enemy m_enemy;
 
 		private Vector3 GetRandomPoint()
 		{
@@ -19,24 +15,17 @@ namespace TopDownShooter
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			m_animator = animator;
-			var enemy = animator.GetComponent<Enemy>();
-			m_agent = animator.GetComponent<NavMeshAgent>();
-			m_points = enemy.patrolPoints.GetPoints();
-			m_agent.destination = GetRandomPoint();
+			m_enemy = animator.GetComponent<Enemy>();
+			m_points = m_enemy.patrolPoints.GetPoints();
+			m_enemy.Goto(GetRandomPoint());
 		}
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			if (m_agent.remainingDistance <= m_agent.stoppingDistance)
+			if (!m_enemy.isRunning)
 			{
-				m_animator.SetBool("isPatrol", false);
+				animator.SetBool(AIStateId.IsPatrol, false);
 			}
-		}
-
-		override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-		{
-
 		}
 	}
 }

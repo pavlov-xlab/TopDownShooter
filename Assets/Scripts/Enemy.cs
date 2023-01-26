@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TopDownShooter.AI;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,12 +11,14 @@ namespace TopDownShooter
 	{
 		[SerializeField] private TargetSearcher m_searcher;
 		public TargetSearcher searcher => m_searcher;
-		private Transform m_target;
 		private Animator m_animator;
 		private NavMeshAgent m_agent;
 
-		public Transform target => m_target;
+		public Transform target { get; private set; }
+
 		public PatrolPoints patrolPoints;
+
+		public bool isRunning => m_agent.remainingDistance > m_agent.stoppingDistance;
 
 		private void Awake()
 		{
@@ -50,14 +53,14 @@ namespace TopDownShooter
 		private void OnTargetLost(GameObject obj)
 		{
 			Stop();
-			m_target = null;
-			m_animator.SetBool("isChasing", false);
+			target = null;
+			m_animator.SetBool(AIStateId.IsChasing, false);
 		}
 
 		private void OnTargetFind(GameObject go)
 		{
-			m_target = go.transform;
-			m_animator.SetBool("isChasing", true);
+			target = go.transform;
+			m_animator.SetBool(AIStateId.IsChasing, true);
 		}
 	}
 }
