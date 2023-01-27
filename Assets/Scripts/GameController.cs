@@ -21,4 +21,17 @@ namespace TopDownShooter
 			return Instantiate(m_playerCharacterPrefab, m_spawnPoint.position, m_spawnPoint.rotation);
 		}
 	}
+
+	public static class GameObjectExt
+	{
+		public static TypeComponent GetOrAddComponent<TypeComponent>(this GameObject go) where TypeComponent : class
+		{
+			if (go.TryGetComponent(typeof(TypeComponent), out var comp))
+			{
+				return comp as TypeComponent;
+			}
+
+			return go.AddComponent(typeof(TypeComponent)) as TypeComponent;
+		}
+	}
 }
