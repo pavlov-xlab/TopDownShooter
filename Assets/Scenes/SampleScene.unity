@@ -1639,8 +1639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0f5b07937b492418c38dc2f0b0517f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_moveActionRef: {fileID: -1680190386980627800, guid: 10ae88c183b9dd3429e615a03799d6fe, type: 3}
-  m_attackActionRef: {fileID: 1120369429361536294, guid: 10ae88c183b9dd3429e615a03799d6fe, type: 3}
+  m_inputAsset: {fileID: -944628639613478452, guid: 10ae88c183b9dd3429e615a03799d6fe, type: 3}
   m_virtualCamera: {fileID: 1548120509}
 --- !u!1 &1524126207
 GameObject:
@@ -1750,7 +1749,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25584
+  m_Name: pb_Mesh25162
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

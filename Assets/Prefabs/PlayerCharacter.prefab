@@ -116,6 +116,7 @@ Transform:
   m_Children:
   - {fileID: 7450168295084084426}
   - {fileID: 3073654176772836679}
+  - {fileID: 8563528117490213296}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -258,7 +259,7 @@ GameObject:
   - component: {fileID: 3073654176772836679}
   - component: {fileID: 3929875199435457541}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: Weapon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -292,3 +293,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 4624328714211587181, guid: 77fc1cb55f8539e4aa1a96f43c1c24ad, type: 3}
+  m_shootDelay: 0.5
+--- !u!1 &8691587550255067172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8563528117490213296}
+  - component: {fileID: 452479964971081949}
+  m_Layer: 0
+  m_Name: Weapon_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8563528117490213296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691587550255067172}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.47, z: 0.78}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7450168294284348764}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &452479964971081949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691587550255067172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bf25b8eafee024d81b90d45221d382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bulletPrefab: {fileID: 4624328714211587181, guid: 335bc1cd97a1fd14bb79d3b938003610, type: 3}
+  m_shootDelay: 0.1

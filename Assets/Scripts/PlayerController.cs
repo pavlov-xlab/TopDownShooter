@@ -9,27 +9,33 @@ namespace TopDownShooter
 {
 	public class PlayerController : MonoBehaviour
 	{
-		[SerializeField] private InputActionReference m_moveActionRef;
-		[SerializeField] private InputActionReference m_attackActionRef;
+		[SerializeField] private InputActionAsset m_inputAsset;
 		[SerializeField] private CinemachineVirtualCamera m_virtualCamera;
+
 
 		private Character m_character;
 		private AttackManager m_attackManager;
 
 		private Vector2 m_move;
-		private InputAction m_moveAction => m_moveActionRef.action;
-		private InputAction m_attackAction => m_attackActionRef.action;
+		private InputAction m_moveAction;
+		private InputAction m_attackAction;
+		private InputAction m_swapWeaponAction;
+
+		private void Awake()
+		{
+			m_moveAction = m_inputAsset.FindAction("Move");
+			m_attackAction = m_inputAsset.FindAction("Fire");
+			m_swapWeaponAction = m_inputAsset.FindAction("SwapWeapon");
+		}
 
 		private void OnEnable()
 		{
-			m_moveAction.Enable();
-			m_attackAction.Enable();
+			m_inputAsset.FindActionMap("Player").Enable();
 		}
 
 		private void OnDisable()
 		{
-			m_moveAction.Disable();
-			m_attackAction.Disable();
+			m_inputAsset.FindActionMap("Player").Disable();
 		}
 
 		public void Init(Character character)
@@ -58,9 +64,19 @@ namespace TopDownShooter
 				}
 
 
-				if (m_attackAction.WasPerformedThisFrame())
+				if (m_attackAction.WasPressedThisFrame())
 				{
-					m_attackManager.Attack();
+					m_attackManager.StartAttack();
+				}
+
+				if (m_attackAction.WasReleasedThisFrame())
+				{
+					m_attackManager.StopAttack();
+				}
+
+				if (m_swapWeaponAction.WasPerformedThisFrame())
+				{
+					m_attackManager.NextWeapon();
 				}
 			}
 		}
