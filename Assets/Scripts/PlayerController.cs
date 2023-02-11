@@ -14,9 +14,9 @@ namespace TopDownShooter
 
 
 		private Character m_character;
+		private MovingComponent m_characterMoving;
 		private AttackManager m_attackManager;
 
-		private Vector2 m_move;
 		private InputAction m_moveAction;
 		private InputAction m_attackAction;
 		private InputAction m_swapWeaponAction;
@@ -41,26 +41,22 @@ namespace TopDownShooter
 		public void Init(Character character)
 		{
 			m_character = character;
+			m_characterMoving = character.GetComponent<MovingComponent>();
 			m_virtualCamera.Follow = character.transform;
 			m_attackManager = character.GetComponent<AttackManager>();
-		}
-
-		public void OnMove(CallbackContext context)
-		{
-			m_move = context.ReadValue<Vector2>();
 		}
 
 		private void Update()
 		{
 			if (m_character)
 			{
-				m_move = m_moveAction.ReadValue<Vector2>();
-				Vector3 offset = new Vector3(m_move.x, 0f, m_move.y);
-				m_character.Move(offset);
+				var move = m_moveAction.ReadValue<Vector2>();
+				Vector3 offset = new(move.x, 0f, move.y);
+				m_characterMoving.Move(offset);
 
-				if (m_move.x != 0f || m_move.y != 0f)
+				if (move.x != 0f || move.y != 0f)
 				{
-					m_character.SetLook(offset);
+					m_characterMoving.Look(offset);
 				}
 
 

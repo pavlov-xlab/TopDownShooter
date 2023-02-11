@@ -7,7 +7,7 @@ namespace TopDownShooter
 	public class GameController : MonoBehaviour
 	{
 		[SerializeField] private PlayerController m_playerController;
-		[SerializeField] private Character m_playerCharacterPrefab;
+		[SerializeField] private Character m_playerPrefab;
 		[SerializeField] private Transform m_spawnPoint;
 
 		private void Start()
@@ -18,7 +18,7 @@ namespace TopDownShooter
 
 		private Character SpawnPlayer()
 		{
-			return Instantiate(m_playerCharacterPrefab, m_spawnPoint.position, m_spawnPoint.rotation);
+			return Instantiate(m_playerPrefab, m_spawnPoint.position, m_spawnPoint.rotation);
 		}
 	}
 
