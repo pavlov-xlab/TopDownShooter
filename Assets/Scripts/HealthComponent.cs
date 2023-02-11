@@ -6,7 +6,7 @@ namespace TopDownShooter
 {
 	public class HealthComponent : MonoBehaviour
 	{
-		private float m_health = 100;
+		[SerializeField] private float m_health = 100;
 
 		public void TakeDamage(float damage)
 		{

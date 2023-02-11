@@ -20,8 +20,9 @@ namespace TheKiwiCoder {
         [HideInInspector] public Blackboard blackboard;
         [TextArea] public string description;
         public bool drawGizmos = false;
-
-        public State Update() {
+		public virtual void Validate() { }
+		public State Update()
+		{
 
             if (!started) {
                 OnStart();

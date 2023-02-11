@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7450168293087499511}
   - component: {fileID: 7450168293087499509}
   - component: {fileID: 7450168293087499510}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7450168294284348763}
   - component: {fileID: 7450168294284348762}
   - component: {fileID: 5033081389904076967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 7450168295084084426}
   - component: {fileID: 7450168295084084424}
   - component: {fileID: 7450168295084084425}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3073654176772836679}
   - component: {fileID: 3929875199435457541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8563528117490213296}
   - component: {fileID: 452479964971081949}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
