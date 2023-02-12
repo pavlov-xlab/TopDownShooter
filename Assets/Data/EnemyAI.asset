@@ -32,12 +32,13 @@ MonoBehaviour:
   - rid: 5614451881988063249
   - rid: 5614451881988063251
   - rid: 5614451881988063252
+  - rid: 5614451904398491648
   treeState: 0
   blackboard:
     target: {fileID: 0}
     moveToPosition: {x: 100, y: 0, z: 0}
-  viewPosition: {x: 154, y: 375, z: 0}
-  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
+  viewPosition: {x: 59, y: -88, z: 0}
+  viewScale: {x: 1, y: 1, z: 1}
   references:
     version: 2
     RefIds:
@@ -99,7 +100,6 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
-        stoppingDistance: 5
     - rid: 5614451881988063239
       type: {class: Parallel, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -145,14 +145,14 @@ MonoBehaviour:
         drawGizmos: 0
         children:
         - rid: 5614451881988063235
-        - rid: 5614451881988063243
+        - rid: 5614451904398491648
     - rid: 5614451881988063242
       type: {class: AttackTarget, ns: TopDownShooter.AI, asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
         guid: 7ca91a6caae3d7a4fa487e81cf6a25f0
-        position: {x: 776.60767, y: 618.99994}
+        position: {x: 730, y: 718}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: c640c841e6385fe479363297744833d6
-        position: {x: 665.60767, y: 446.00003}
+        position: {x: 626, y: 578}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -179,7 +179,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: ee1d08d851d77d149a65b58dc587c14c
-        position: {x: 564.60754, y: 718.00006}
+        position: {x: 518, y: 817}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -191,7 +191,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 9fe6e50d039156143a06a4228b9c37db
-        position: {x: 564.60754, y: 618.99994}
+        position: {x: 518, y: 718}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -286,3 +286,17 @@ MonoBehaviour:
         drawGizmos: 0
         child:
           rid: 5614451881988063241
+    - rid: 5614451904398491648
+      type: {class: IsReadyAttack, ns: TopDownShooter, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 2b984d24a0cb7714aaa7987d578ed864
+        position: {x: 626, y: 476}
+        blackboard:
+          target: {fileID: 0}
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 5614451881988063243

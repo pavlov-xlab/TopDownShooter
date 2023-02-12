@@ -6,54 +6,56 @@ namespace TopDownShooter
 {
 	public class AttackManager : MonoBehaviour
 	{
-		private List<IWeapon> m_weapons = new();
+		private List<AttackComponent> m_skills = new();
 
-		private IWeapon m_mainAttack;
+		private AttackComponent m_currentSkill;
+
+		public float attackDistance => m_currentSkill.attackDistance;
 
 		private void Awake()
 		{
-			GetComponentsInChildren(true, m_weapons);
+			GetComponentsInChildren(true, m_skills);
 
-			m_weapons.ForEach(x => x.SetActive(false));
+			m_skills.ForEach(x => x.SetActive(false));
 		}
 
 		private void Start()
 		{
-			SelectWeapon(0);
+			SelectSkill(0);
 		}
 
-		public void NextWeapon()
+		public void NextSkill()
 		{
-			var index = m_weapons.IndexOf(m_mainAttack) + 1;
-			if (index >= m_weapons.Count)
+			var index = m_skills.IndexOf(m_currentSkill) + 1;
+			if (index >= m_skills.Count)
 			{
 				index = 0;
 			}
-			SelectWeapon(index);
+			SelectSkill(index);
 		}
 
-		public void SelectWeapon(int index)
+		public void SelectSkill(int index)
 		{
-			if (index >= 0 && index < m_weapons.Count)
+			if (index >= 0 && index < m_skills.Count)
 			{
-				if (m_mainAttack != null)
+				if (m_currentSkill != null)
 				{
-					m_mainAttack.SetActive(false);
+					m_currentSkill.SetActive(false);
 				}
 
-				m_mainAttack = m_weapons[index];
-				m_mainAttack.SetActive(true);
+				m_currentSkill = m_skills[index];
+				m_currentSkill.SetActive(true);
 			}
 		}
 
 		public void StartAttack()
 		{
-			m_mainAttack.StartAttack();
+			m_currentSkill.StartAttack(null);
 		}
 
 		public void StopAttack()
 		{
-			m_mainAttack.StopAttack();
+			m_currentSkill.StopAttack();
 		}
 	}
 }

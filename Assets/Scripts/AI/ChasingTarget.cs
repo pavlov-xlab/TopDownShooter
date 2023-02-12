@@ -8,11 +8,9 @@ namespace TopDownShooter.AI
 	[System.Serializable]
 	public class ChasingTarget : ActionNode
 	{
-		public float stoppingDistance = 2;
-
 		protected override void OnStart()
 		{
-			context.agent.stoppingDistance = stoppingDistance;
+			context.agent.stoppingDistance = context.attackManager.attackDistance;
 			context.agent.SetDestination(blackboard.target.transform.position);
 		}
 

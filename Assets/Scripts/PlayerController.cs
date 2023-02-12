@@ -72,7 +72,7 @@ namespace TopDownShooter
 
 				if (m_swapWeaponAction.WasPerformedThisFrame())
 				{
-					m_attackManager.NextWeapon();
+					m_attackManager.NextSkill();
 				}
 			}
 		}

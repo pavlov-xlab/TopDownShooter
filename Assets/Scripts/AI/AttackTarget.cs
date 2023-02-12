@@ -7,24 +7,14 @@ namespace TopDownShooter.AI
 {
 	public class AttackTarget : ActionNode
 	{
-		private AttackManager m_attackManager;
-
 		protected override void OnStart()
 		{
-			m_attackManager ??= context.gameObject.GetComponent<AttackManager>();
-
-			if (m_attackManager)
-			{
-				m_attackManager.StartAttack();
-			}
+			context.attackManager.StartAttack();
 		}
 
 		protected override void OnStop()
 		{
-			if (m_attackManager)
-			{
-				m_attackManager.StopAttack();
-			}
+			context.attackManager.StopAttack();
 		}
 
 		protected override State OnUpdate()
