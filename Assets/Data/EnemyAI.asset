@@ -31,12 +31,13 @@ MonoBehaviour:
   - rid: 5614451881988063248
   - rid: 5614451881988063249
   - rid: 5614451881988063251
+  - rid: 5614451881988063252
   treeState: 0
   blackboard:
     target: {fileID: 0}
     moveToPosition: {x: 100, y: 0, z: 0}
-  viewPosition: {x: 117, y: 292, z: 0}
-  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
+  viewPosition: {x: 154, y: 375, z: 0}
+  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 2
     RefIds:
@@ -92,7 +93,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: bfcf3e96d2860fa4daf46a282a49ad8a
-        position: {x: 303.159, y: 338.99997}
+        position: {x: 414.60764, y: 456}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -113,7 +114,7 @@ MonoBehaviour:
         drawGizmos: 0
         children:
         - rid: 5614451881988063240
-        - rid: 5614451881988063241
+        - rid: 5614451881988063252
     - rid: 5614451881988063240
       type: {class: Repeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -136,7 +137,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 2e8a493cfae3a654cbe65b8276140c68
-        position: {x: 378.15894, y: 186}
+        position: {x: 489.6076, y: 302.99997}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -151,7 +152,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 7ca91a6caae3d7a4fa487e81cf6a25f0
-        position: {x: 665.15894, y: 502}
+        position: {x: 776.60767, y: 618.99994}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -163,7 +164,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: c640c841e6385fe479363297744833d6
-        position: {x: 554.159, y: 328.99997}
+        position: {x: 665.60767, y: 446.00003}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -178,7 +179,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: ee1d08d851d77d149a65b58dc587c14c
-        position: {x: 453.159, y: 601}
+        position: {x: 564.60754, y: 718.00006}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -190,7 +191,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 9fe6e50d039156143a06a4228b9c37db
-        position: {x: 453.159, y: 502}
+        position: {x: 564.60754, y: 618.99994}
         blackboard:
           target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
@@ -271,3 +272,17 @@ MonoBehaviour:
         children:
         - rid: 5614451881988063239
         - rid: 5614451881988063246
+    - rid: 5614451881988063252
+      type: {class: HasTarget, ns: TopDownShooter.AI, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 38941b0721e6acd45a54ea5ef7ceca7d
+        position: {x: 490.00006, y: 206.00003}
+        blackboard:
+          target: {fileID: 0}
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 5614451881988063241
