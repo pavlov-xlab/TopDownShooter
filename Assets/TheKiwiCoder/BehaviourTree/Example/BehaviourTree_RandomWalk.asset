@@ -21,11 +21,13 @@ MonoBehaviour:
   - rid: 4200190926137589872
   - rid: 4200190926137589873
   - rid: 4200190926137589874
+  - rid: 5121650814248026131
   treeState: 0
   blackboard:
+    target: {fileID: 0}
     moveToPosition: {x: 100, y: 0, z: 0}
-  viewPosition: {x: -48, y: 512, z: 0}
-  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
+  viewPosition: {x: -205.6, y: 328, z: 0}
+  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
   references:
     version: 2
     RefIds:
@@ -37,6 +39,7 @@ MonoBehaviour:
         guid: 08babbf2-251b-4019-9d8e-2f9fc5bc6b8b
         position: {x: 723.1318, y: -392.096}
         blackboard:
+          target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Where it all begins!
         drawGizmos: 0
@@ -50,11 +53,12 @@ MonoBehaviour:
         guid: dcafe99d707d250419e5d8ff0ada012e
         position: {x: 723, y: -230.00012}
         blackboard:
+          target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Repeat forever
         drawGizmos: 0
         child:
-          rid: 4200190926137589871
+          rid: 5121650814248026131
         restartOnSuccess: 1
         restartOnFailure: 0
     - rid: 4200190926137589871
@@ -65,13 +69,11 @@ MonoBehaviour:
         guid: 5e06deafef5af5b49aa50aaed9884138
         position: {x: 722.99994, y: -81.93839}
         blackboard:
+          target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Select random position, move to it, then wait
         drawGizmos: 0
-        children:
-        - rid: 4200190926137589874
-        - rid: 4200190926137589872
-        - rid: 4200190926137589873
+        children: []
     - rid: 4200190926137589872
       type: {class: RandomPosition, ns: , asm: Assembly-CSharp}
       data:
@@ -80,6 +82,7 @@ MonoBehaviour:
         guid: 9a1467763237cb145b9cf65e90ce3193
         position: {x: 722.99994, y: 168.99998}
         blackboard:
+          target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Randomly generates a position into the blackboard
         drawGizmos: 0
@@ -93,14 +96,11 @@ MonoBehaviour:
         guid: 6d43e0274b9a6b647a32a83ae71f5c62
         position: {x: 948.666, y: 181}
         blackboard:
+          target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Move to the random position in the blackboard
         drawGizmos: 0
-        speed: 5
         stoppingDistance: 0.1
-        updateRotation: 1
-        acceleration: 40
-        tolerance: 1
     - rid: 4200190926137589874
       type: {class: Wait, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -109,7 +109,24 @@ MonoBehaviour:
         guid: a6398ba3eee6567469a804864807353b
         position: {x: 463.73767, y: 181}
         blackboard:
+          target: {fileID: 0}
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Wait
         drawGizmos: 0
         duration: 1
+    - rid: 5121650814248026131
+      type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 8992a958b23969848b1500970d85ddd0
+        position: {x: 543.86487, y: -83.344}
+        blackboard:
+          target: {fileID: 0}
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 4200190926137589874
+        - rid: 4200190926137589872
+        - rid: 4200190926137589873

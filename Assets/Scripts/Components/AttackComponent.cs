@@ -18,7 +18,7 @@ namespace TopDownShooter
 
 		public UnityEvent<Transform> onAttack;
 
-		protected virtual void Attack()
+		protected void Attack()
 		{
 			onAttack.Invoke(m_target);
 		}

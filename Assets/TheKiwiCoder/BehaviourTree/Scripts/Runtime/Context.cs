@@ -24,6 +24,7 @@ namespace TheKiwiCoder
 		public CharacterController characterController;
 		// Add other game specific systems here
 		public AttackManager attackManager;
+		public HealthComponent health;
 
 		public static Context CreateFromGameObject(GameObject gameObject)
 		{
@@ -38,6 +39,7 @@ namespace TheKiwiCoder
 			context.boxCollider = gameObject.GetComponent<BoxCollider>();
 			context.capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
 			context.characterController = gameObject.GetComponent<CharacterController>();
+			context.health = gameObject.GetComponent<HealthComponent>();
 
 			// Add whatever else you need here...
 			context.attackManager = gameObject.GetComponent<AttackManager>();

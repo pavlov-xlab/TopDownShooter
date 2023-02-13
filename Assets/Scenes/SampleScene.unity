@@ -1529,7 +1529,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25162
+  m_Name: pb_Mesh21174
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1744,6 +1744,10 @@ PrefabInstance:
     - target: {fileID: 9140398787913409227, guid: 3a7aaf64d436dd14b848f27baa712867, type: 3}
       propertyPath: m_Name
       value: EnemyMelee
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140398787913409227, guid: 3a7aaf64d436dd14b848f27baa712867, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9140398787913409230, guid: 3a7aaf64d436dd14b848f27baa712867, type: 3}
       propertyPath: m_RootOrder
