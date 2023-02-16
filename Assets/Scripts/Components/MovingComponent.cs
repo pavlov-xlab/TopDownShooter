@@ -6,6 +6,8 @@ namespace TopDownShooter
 {
 	public abstract class MovingComponent : MonoBehaviour
 	{
+		public abstract void Init(float speed);
+
 		public abstract void Move(Vector3 dir);
 
 		public abstract void MoveTo(Vector3 position);

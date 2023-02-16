@@ -11,11 +11,14 @@ namespace TopDownShooter
 	{
 		[SerializeField] private InputActionAsset m_inputAsset;
 		[SerializeField] private CinemachineVirtualCamera m_virtualCamera;
+		[SerializeField] private UIPlayerHUD m_playerHUD;
 
 
 		private Character m_character;
 		private MovingComponent m_characterMoving;
 		private AttackManager m_attackManager;
+		private ManaComponent m_mana;
+		private HealthComponent m_health;
 
 		private InputAction m_moveAction;
 		private InputAction m_attackAction;
@@ -44,6 +47,13 @@ namespace TopDownShooter
 			m_characterMoving = character.GetComponent<MovingComponent>();
 			m_virtualCamera.Follow = character.transform;
 			m_attackManager = character.GetComponent<AttackManager>();
+			m_mana = character.GetComponent<ManaComponent>();
+			m_health = character.GetComponent<HealthComponent>();
+		}
+
+		private void RefreshUI()
+		{
+			m_playerHUD.Refresh(m_health.percent, m_mana.percent);
 		}
 
 		private void Update()
@@ -60,20 +70,29 @@ namespace TopDownShooter
 				}
 
 
-				if (m_attackAction.WasPressedThisFrame())
+				if (m_mana.current >= m_attackManager.needMana)
 				{
-					m_attackManager.StartAttack();
+					if (m_attackAction.WasPressedThisFrame())
+					{
+						m_attackManager.Attack();
+
+						m_mana.Reduce(m_attackManager.needMana);
+					}
+
 				}
 
-				if (m_attackAction.WasReleasedThisFrame())
-				{
-					m_attackManager.StopAttack();
-				}
+				// if (m_attackAction.WasReleasedThisFrame())
+				// {
+				// 	m_attackManager.StopAttack();
+				// }
 
 				if (m_swapWeaponAction.WasPerformedThisFrame())
 				{
 					m_attackManager.NextSkill();
 				}
+
+
+				RefreshUI();
 			}
 		}
 	}

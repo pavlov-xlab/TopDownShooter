@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5122149175077114564}
   - component: {fileID: 5122149175077114567}
   - component: {fileID: 5122149175077114563}
+  - component: {fileID: 9207062312988184403}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -109,5 +110,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d71ab848a1c0a214a874f8e6f889c68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_health: 100
+  m_healthMax: 100
+  onDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9207062312988184403}
+        m_TargetAssemblyTypeName: TopDownShooter.DestroySelfComponent, Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9207062312988184403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122149175077114566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf75851fe4064f45abe201f50272029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -9,6 +9,10 @@ namespace TopDownShooter
 	{
 		[SerializeField] private float m_cooldownTime = 0.1f;
 		[SerializeField] private float m_attackDistance = 5f;
+		[SerializeField] private float m_mana = 5f;
+
+		public float mana => m_mana;
+
 		private bool m_isAttack = false;
 		private float m_nextShootTime;
 
@@ -18,34 +22,34 @@ namespace TopDownShooter
 
 		public UnityEvent<Transform> onAttack;
 
-		protected void Attack()
+		public void Attack()
 		{
 			onAttack.Invoke(m_target);
 		}
 
-		public void StartAttack(Transform target)
-		{
-			m_target = target;
-			m_isAttack = true;
-			m_nextShootTime = Time.time;
-		}
+		// public void StartAttack(Transform target)
+		// {
+		// 	m_target = target;
+		// 	m_isAttack = true;
+		// 	m_nextShootTime = Time.time;
+		// }
 
-		public void StopAttack()
-		{
-			m_isAttack = false;
-		}
+		// public void StopAttack()
+		// {
+		// 	m_isAttack = false;
+		// }
 
-		private void Update()
-		{
-			if (m_isAttack)
-			{
-				if (Time.time >= m_nextShootTime)
-				{
-					Attack();
-					m_nextShootTime = Time.time + m_cooldownTime;
-				}
-			}
-		}
+		// private void Update()
+		// {
+		// 	if (m_isAttack)
+		// 	{
+		// 		if (Time.time >= m_nextShootTime)
+		// 		{
+		// 			Attack();
+		// 			m_nextShootTime = Time.time + m_cooldownTime;
+		// 		}
+		// 	}
+		// }
 
 		public void SetActive(bool state)
 		{

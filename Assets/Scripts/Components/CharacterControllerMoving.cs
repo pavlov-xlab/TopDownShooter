@@ -22,5 +22,10 @@ namespace TopDownShooter
 		{
 			throw new System.NotImplementedException();
 		}
+
+		public override void Init(float speed)
+		{
+			m_speed = speed;
+		}
 	}
 }

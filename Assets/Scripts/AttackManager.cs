@@ -10,6 +10,8 @@ namespace TopDownShooter
 
 		private AttackComponent m_currentSkill;
 
+		public float needMana => m_currentSkill.mana;
+
 		public float attackDistance => m_currentSkill.attackDistance;
 
 		private void Awake()
@@ -48,14 +50,19 @@ namespace TopDownShooter
 			}
 		}
 
-		public void StartAttack()
+		public void Attack()
 		{
-			m_currentSkill.StartAttack(null);
+			m_currentSkill.Attack();
 		}
 
-		public void StopAttack()
-		{
-			m_currentSkill.StopAttack();
-		}
+		// public void StartAttack()
+		// {
+		// 	m_currentSkill.StartAttack(null);
+		// }
+
+		// public void StopAttack()
+		// {
+		// 	m_currentSkill.StopAttack();
+		// }
 	}
 }
