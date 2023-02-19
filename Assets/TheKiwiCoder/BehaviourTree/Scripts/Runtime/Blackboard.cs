@@ -10,7 +10,7 @@ namespace TheKiwiCoder {
     [System.Serializable]
 	public class Blackboard
 	{
-		public GameObject target;
+		public Transform target;
 		public Vector3 moveToPosition;
     }
 }

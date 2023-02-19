@@ -70,21 +70,16 @@ namespace TopDownShooter
 				}
 
 
-				if (m_mana.current >= m_attackManager.needMana)
+				bool canAttack = m_mana.current >= m_attackManager.needMana && m_attackManager.canAttack;
+				if (canAttack)
 				{
 					if (m_attackAction.WasPressedThisFrame())
 					{
-						m_attackManager.Attack();
+						m_attackManager.Attack(null);
 
 						m_mana.Reduce(m_attackManager.needMana);
 					}
-
 				}
-
-				// if (m_attackAction.WasReleasedThisFrame())
-				// {
-				// 	m_attackManager.StopAttack();
-				// }
 
 				if (m_swapWeaponAction.WasPerformedThisFrame())
 				{

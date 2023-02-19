@@ -9,16 +9,18 @@ namespace TopDownShooter.AI
 	{
 		protected override void OnStart()
 		{
-			// context.attackManager.StartAttack();
 		}
 
 		protected override void OnStop()
 		{
-			// context.attackManager.StopAttack();
 		}
 
 		protected override State OnUpdate()
 		{
+			if (context.attackManager.canAttack)
+			{
+				context.attackManager.Attack(blackboard.target);
+			}
 			return State.Running;
 		}
 	}

@@ -17,7 +17,7 @@ namespace TopDownShooter
 
 		protected override State OnUpdate()
 		{
-			var sqrMagnitude = Vector3.SqrMagnitude(blackboard.target.transform.position - context.transform.position);
+			var sqrMagnitude = Vector3.SqrMagnitude(blackboard.target.position - context.transform.position);
 			var attackDistance = context.attackManager.attackDistance;
 			if (sqrMagnitude > attackDistance * attackDistance)
 			{

@@ -30,12 +30,12 @@ namespace TopDownShooter.AI
 			return target ? State.Success : State.Failure;
 		}
 
-		private GameObject Search(Vector3 position, float radius, LayerMask mask)
+		private Transform Search(Vector3 position, float radius, LayerMask mask)
 		{
 			var result = Physics.OverlapSphere(position, radius, mask, QueryTriggerInteraction.Ignore);
 			if (result.Length > 0)
 			{
-				return result[0].gameObject;
+				return result[0].transform;
 			}
 
 			return null;

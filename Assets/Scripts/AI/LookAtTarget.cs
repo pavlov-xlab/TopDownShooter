@@ -15,7 +15,7 @@ namespace TopDownShooter.AI
 
 		protected override State OnUpdate()
 		{
-			var targetPosition = blackboard.target.transform.position;
+			var targetPosition = blackboard.target.position;
 			targetPosition.y = context.transform.position.y;
 			context.transform.LookAt(targetPosition, Vector3.up);
 			return State.Success;

@@ -6,6 +6,8 @@ namespace TopDownShooter
 {
 	public class AttackManager : MonoBehaviour
 	{
+		[SerializeField] private Transform m_skillsSlot;
+
 		private List<AttackComponent> m_skills = new();
 
 		private AttackComponent m_currentSkill;
@@ -14,11 +16,33 @@ namespace TopDownShooter
 
 		public float attackDistance => m_currentSkill.attackDistance;
 
+		public bool canAttack => m_currentSkill.canAttack;
+
 		private void Awake()
 		{
-			GetComponentsInChildren(true, m_skills);
+			if (m_skillsSlot == null)
+			{
+				m_skillsSlot = transform;
+			}
+
+			m_skillsSlot.GetComponentsInChildren(true, m_skills);
 
 			m_skills.ForEach(x => x.SetActive(false));
+		}
+
+		public void Init(AttackComponent[] skillsPrefab)
+		{
+			m_skills.ForEach(x => Destroy(x));
+			m_skills.Clear();
+
+			foreach (AttackComponent skillPrefab in skillsPrefab)
+			{
+				var skill = Instantiate(skillPrefab, m_skillsSlot);
+				skill.SetActive(false);
+				m_skills.Add(skill);
+			}
+
+			SelectSkill(0);
 		}
 
 		private void Start()
@@ -50,19 +74,9 @@ namespace TopDownShooter
 			}
 		}
 
-		public void Attack()
+		public void Attack(Transform target)
 		{
-			m_currentSkill.Attack();
+			m_currentSkill.Attack(target);
 		}
-
-		// public void StartAttack()
-		// {
-		// 	m_currentSkill.StartAttack(null);
-		// }
-
-		// public void StopAttack()
-		// {
-		// 	m_currentSkill.StopAttack();
-		// }
 	}
 }

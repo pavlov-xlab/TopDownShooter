@@ -11,7 +11,7 @@ namespace TopDownShooter.AI
 		protected override void OnStart()
 		{
 			context.agent.stoppingDistance = context.attackManager.attackDistance;
-			context.agent.SetDestination(blackboard.target.transform.position);
+			context.agent.SetDestination(blackboard.target.position);
 		}
 
 		protected override void OnStop()
@@ -26,7 +26,7 @@ namespace TopDownShooter.AI
 				var agent = context.agent;
 				if (Time.frameCount % 3 == 0)
 				{
-					agent.SetDestination(target.transform.position);
+					agent.SetDestination(target.position);
 				}
 
 				if (agent.pathPending)
