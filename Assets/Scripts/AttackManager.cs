@@ -30,14 +30,20 @@ namespace TopDownShooter
 			m_skills.ForEach(x => x.SetActive(false));
 		}
 
-		public void Init(AttackComponent[] skillsPrefab)
+		public void Init(SkillData[] skillsData, float baseDamage)
 		{
+			if (skillsData.Length == 0)
+			{
+				return;
+			}
+
 			m_skills.ForEach(x => Destroy(x));
 			m_skills.Clear();
 
-			foreach (AttackComponent skillPrefab in skillsPrefab)
+			foreach (SkillData skillData in skillsData)
 			{
-				var skill = Instantiate(skillPrefab, m_skillsSlot);
+				var skill = Instantiate(skillData.prefab, m_skillsSlot, false);
+				skill.Init(skillData.mana, skillData.cooldownTime, skillData.attackDistance, skillData.damage + baseDamage, skillData.flightSpeed, skillData.flightDistance);
 				skill.SetActive(false);
 				m_skills.Add(skill);
 			}

@@ -12,5 +12,7 @@ namespace TopDownShooter
 		public float speedRestoreMana = 10f;
 		public float speedMove = 100f;
 		public float baseDamage = 50f;
+
+		public SkillData[] skills;
 	}
 }

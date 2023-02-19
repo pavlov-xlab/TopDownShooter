@@ -17,3 +17,6 @@ MonoBehaviour:
   speedRestoreMana: 10
   speedMove: 5
   baseDamage: 50
+  skills:
+  - {fileID: 11400000, guid: ffb6c56ec0d5edc4092a669327b3cbc4, type: 2}
+  - {fileID: 11400000, guid: 0aaabeab72b71f34598e95be650495b7, type: 2}

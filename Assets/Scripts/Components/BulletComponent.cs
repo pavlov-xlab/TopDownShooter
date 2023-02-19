@@ -8,17 +8,29 @@ namespace TopDownShooter
 	public class BulletComponent : MonoBehaviour
 	{
 		private Rigidbody m_body;
-		[SerializeField] private float m_force = 15f;
-		[SerializeField] private float m_damage = 50f;
+		private float m_damage = 50f;
+		private float m_lifeTime = 0;
 
 		private void Awake()
 		{
 			m_body = GetComponent<Rigidbody>();
 		}
 
-		public void Shoot()
+		public void Shoot(float damage, float force, float distance)
 		{
-			m_body.AddForce(transform.forward * m_force, ForceMode.Impulse);
+			m_damage = damage;
+			m_lifeTime = distance / force;
+
+			m_body.AddForce(transform.forward * force, ForceMode.Impulse);
+		}
+
+		private void Update()
+		{
+			m_lifeTime -= Time.deltaTime;
+			if (m_lifeTime <= 0f)
+			{
+				Destroy(gameObject);
+			}
 		}
 
 		private void OnCollisionEnter(Collision other)
