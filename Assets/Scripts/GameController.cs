@@ -6,32 +6,18 @@ namespace TopDownShooter
 {
 	public class GameController : MonoBehaviour
 	{
-		[SerializeField] private PlayerController m_playerController;
-		[SerializeField] private Character m_playerPrefab;
-		[SerializeField] private Transform m_spawnPoint;
+		public static GameController instance { get; private set; }
 
-		private void Start()
+		private void Awake()
 		{
-			var player = SpawnPlayer();
-			m_playerController.Init(player);
-		}
-
-		private Character SpawnPlayer()
-		{
-			return Instantiate(m_playerPrefab, m_spawnPoint.position, m_spawnPoint.rotation);
-		}
-	}
-
-	public static class GameObjectExt
-	{
-		public static TypeComponent GetOrAddComponent<TypeComponent>(this GameObject go) where TypeComponent : class
-		{
-			if (go.TryGetComponent(typeof(TypeComponent), out var comp))
+			if (instance != null)
 			{
-				return comp as TypeComponent;
+				Debug.LogWarning("instance not null");
+				Destroy(gameObject);
 			}
 
-			return go.AddComponent(typeof(TypeComponent)) as TypeComponent;
+			instance = this;
+			DontDestroyOnLoad(gameObject);
 		}
 	}
 }
