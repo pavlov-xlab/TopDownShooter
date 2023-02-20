@@ -12,6 +12,10 @@ namespace TopDownShooter
 
 		private void Start()
 		{
+			m_data = PlayerUpgrade.Upgrade(1, m_data);
+			PlayerUpgrade.UpgradeSkill(5, m_data.skills[0]);
+
+
 			if (TryGetComponent(out health))
 			{
 				health.Init(m_data.health);
