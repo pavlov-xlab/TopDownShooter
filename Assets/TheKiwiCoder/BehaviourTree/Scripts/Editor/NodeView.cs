@@ -33,6 +33,11 @@ namespace TheKiwiCoder {
         
         private void SetupDataBinding() {
             var nodeProp = serializer.FindNode(serializer.Nodes, node);
+            Debug.Assert(nodeProp != null, "nodeProp != null");
+            if (nodeProp == null)
+            {
+                return;
+            }
 
             var descriptionProp = nodeProp.FindPropertyRelative("description");
            

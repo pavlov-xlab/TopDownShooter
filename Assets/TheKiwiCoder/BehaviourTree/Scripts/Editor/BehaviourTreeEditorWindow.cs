@@ -7,193 +7,229 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using UnityEditor.Callbacks;
 
-namespace TheKiwiCoder {
+namespace TheKiwiCoder
+{
+	public class BehaviourTreeEditorWindow : EditorWindow
+	{
+		public class Test : UnityEditor.AssetModificationProcessor
+		{
+			static AssetDeleteResult OnWillDeleteAsset(string path, RemoveAssetOptions opt)
+			{
+				BehaviourTreeEditorWindow wnd = GetWindow<BehaviourTreeEditorWindow>();
+				wnd.ClearIfSelected(path);
+				return AssetDeleteResult.DidNotDelete;
+			}
+		}
 
-    public class BehaviourTreeEditorWindow : EditorWindow {
+		SerializedBehaviourTree serializer;
+		BehaviourTreeSettings settings;
 
-        public class Test : UnityEditor.AssetModificationProcessor {
- 
-            static AssetDeleteResult OnWillDeleteAsset(string path, RemoveAssetOptions opt) {
-                BehaviourTreeEditorWindow wnd = GetWindow<BehaviourTreeEditorWindow>();
-                wnd.ClearIfSelected(path);
-                return AssetDeleteResult.DidNotDelete;
-            }
-        }
+		BehaviourTreeView treeView;
+		InspectorView inspectorView;
+		BlackboardView blackboardView;
+		OverlayView overlayView;
+		ToolbarMenu toolbarMenu;
+		Label titleLabel;
 
-        SerializedBehaviourTree serializer;
-        BehaviourTreeSettings settings;
+		[MenuItem("TheKiwiCoder/BehaviourTreeEditor ...")]
+		public static void OpenWindow()
+		{
+			BehaviourTreeEditorWindow wnd = GetWindow<BehaviourTreeEditorWindow>();
+			wnd.titleContent = new GUIContent("BehaviourTreeEditor");
+			wnd.minSize = new Vector2(800, 600);
+		}
 
-        BehaviourTreeView treeView;
-        InspectorView inspectorView;
-        BlackboardView blackboardView;
-        OverlayView overlayView;
-        ToolbarMenu toolbarMenu;
-        Label titleLabel;
+		public static void OpenWindow(BehaviourTree tree)
+		{
+			BehaviourTreeEditorWindow wnd = GetWindow<BehaviourTreeEditorWindow>();
+			wnd.titleContent = new GUIContent("BehaviourTreeEditor");
+			wnd.minSize = new Vector2(800, 600);
+			wnd.SelectTree(tree);
+		}
 
-        [MenuItem("TheKiwiCoder/BehaviourTreeEditor ...")]
-        public static void OpenWindow() {
-            BehaviourTreeEditorWindow wnd = GetWindow<BehaviourTreeEditorWindow>();
-            wnd.titleContent = new GUIContent("BehaviourTreeEditor");
-            wnd.minSize = new Vector2(800, 600);
-        }
+		[OnOpenAsset]
+		public static bool OnOpenAsset(int instanceId, int line)
+		{
+			if (Selection.activeObject is BehaviourTree)
+			{
+				OpenWindow(Selection.activeObject as BehaviourTree);
+				return true;
+			}
 
-        public static void OpenWindow(BehaviourTree tree) {
-            BehaviourTreeEditorWindow wnd = GetWindow<BehaviourTreeEditorWindow>();
-            wnd.titleContent = new GUIContent("BehaviourTreeEditor");
-            wnd.minSize = new Vector2(800, 600);
-            wnd.SelectTree(tree);
-        }
+			return false;
+		}
 
-        [OnOpenAsset]
-        public static bool OnOpenAsset(int instanceId, int line) {
-            if (Selection.activeObject is BehaviourTree) {
-                OpenWindow(Selection.activeObject as BehaviourTree);
-                return true;
-            }
-            return false;
-        }
+		public void CreateGUI()
+		{
+			settings = BehaviourTreeSettings.GetOrCreateSettings();
 
-        public void CreateGUI() {
+			// Each editor window contains a root VisualElement object
+			VisualElement root = rootVisualElement;
 
-            settings = BehaviourTreeSettings.GetOrCreateSettings();
+			// Import UXML
+			var visualTree = settings.behaviourTreeXml;
+			visualTree.CloneTree(root);
 
-            // Each editor window contains a root VisualElement object
-            VisualElement root = rootVisualElement;
+			// A stylesheet can be added to a VisualElement.
+			// The style will be applied to the VisualElement and all of its children.
+			var styleSheet = settings.behaviourTreeStyle;
+			root.styleSheets.Add(styleSheet);
 
-            // Import UXML
-            var visualTree = settings.behaviourTreeXml;
-            visualTree.CloneTree(root);
+			// Main treeview
+			treeView = root.Q<BehaviourTreeView>();
+			inspectorView = root.Q<InspectorView>();
+			blackboardView = root.Q<BlackboardView>();
+			toolbarMenu = root.Q<ToolbarMenu>();
+			overlayView = root.Q<OverlayView>("OverlayView");
+			titleLabel = root.Q<Label>("TitleLabel");
 
-            // A stylesheet can be added to a VisualElement.
-            // The style will be applied to the VisualElement and all of its children.
-            var styleSheet = settings.behaviourTreeStyle;
-            root.styleSheets.Add(styleSheet);
+			// Toolbar assets menu
+			toolbarMenu.RegisterCallback<MouseEnterEvent>((evt) =>
+			{
+				// Refresh the menu options just before it's opened (on mouse enter)
+				toolbarMenu.menu.MenuItems().Clear();
+				var behaviourTrees = EditorUtility.GetAssetPaths<BehaviourTree>();
+				behaviourTrees.ForEach(path =>
+				{
+					var fileName = System.IO.Path.GetFileName(path);
+					toolbarMenu.menu.AppendAction($"{fileName}", (a) =>
+					{
+						var tree = AssetDatabase.LoadAssetAtPath<BehaviourTree>(path);
+						SelectTree(tree);
+					});
+				});
+				toolbarMenu.menu.AppendSeparator();
+				toolbarMenu.menu.AppendAction("New Tree...", (a) => OnToolbarNewAsset());
+			});
 
-            // Main treeview
-            treeView = root.Q<BehaviourTreeView>();
-            inspectorView = root.Q<InspectorView>();
-            blackboardView = root.Q<BlackboardView>();
-            toolbarMenu = root.Q<ToolbarMenu>();
-            overlayView = root.Q<OverlayView>("OverlayView");
-            titleLabel = root.Q<Label>("TitleLabel");
+			// Overlay view
+			treeView.OnNodeSelected = OnNodeSelectionChanged;
+			overlayView.OnTreeSelected += SelectTree;
+			Undo.undoRedoPerformed += OnUndoRedo;
 
-            // Toolbar assets menu
-            toolbarMenu.RegisterCallback<MouseEnterEvent>((evt) => {
+			if (serializer == null)
+			{
+				overlayView.Show();
+			}
+			else
+			{
+				SelectTree(serializer.tree);
+			}
+		}
 
-                // Refresh the menu options just before it's opened (on mouse enter)
-                toolbarMenu.menu.MenuItems().Clear();
-                var behaviourTrees = EditorUtility.GetAssetPaths<BehaviourTree>();
-                behaviourTrees.ForEach(path => {
-                    var fileName = System.IO.Path.GetFileName(path);
-                    toolbarMenu.menu.AppendAction($"{fileName}", (a) => {
-                        var tree = AssetDatabase.LoadAssetAtPath<BehaviourTree>(path);
-                        SelectTree(tree);
-                    });
-                });
-                toolbarMenu.menu.AppendSeparator();
-                toolbarMenu.menu.AppendAction("New Tree...", (a) => OnToolbarNewAsset());
-            });
-            
-            // Overlay view
-            treeView.OnNodeSelected = OnNodeSelectionChanged;
-            overlayView.OnTreeSelected += SelectTree;
-            Undo.undoRedoPerformed += OnUndoRedo;
+		void OnUndoRedo()
+		{
+			if (serializer != null)
+			{
+				treeView.PopulateView(serializer);
+			}
+		}
 
-            if (serializer == null) {
-                overlayView.Show();
-            } else {
-                SelectTree(serializer.tree);
-            }
-        }
+		private void OnEnable()
+		{
+			EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+			EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+		}
 
-        void OnUndoRedo() {
-            if (serializer != null) {
-                treeView.PopulateView(serializer);
-            }
-        }
+		private void OnDisable()
+		{
+			EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+		}
 
-        private void OnEnable() {
-            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
-            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-        }
+		private void OnPlayModeStateChanged(PlayModeStateChange obj)
+		{
+			switch (obj)
+			{
+				case PlayModeStateChange.EnteredEditMode:
+					EditorApplication.delayCall += OnSelectionChange;
+					break;
+				case PlayModeStateChange.ExitingEditMode:
+					break;
+				case PlayModeStateChange.EnteredPlayMode:
+					EditorApplication.delayCall += OnSelectionChange;
+					break;
+				case PlayModeStateChange.ExitingPlayMode:
+					break;
+			}
+		}
 
-        private void OnDisable() {
-            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
-        }
+		private void OnSelectionChange()
+		{
+			if (Selection.activeGameObject)
+			{
+				BehaviourTreeRunner runner = Selection.activeGameObject.GetComponent<BehaviourTreeRunner>();
+				if (runner)
+				{
+					SelectTree(runner.tree);
+				}
+			}
+		}
 
-        private void OnPlayModeStateChanged(PlayModeStateChange obj) {
-            switch (obj) {
-                case PlayModeStateChange.EnteredEditMode:
-                    EditorApplication.delayCall += OnSelectionChange;
-                    break;
-                case PlayModeStateChange.ExitingEditMode:
-                    break;
-                case PlayModeStateChange.EnteredPlayMode:
-                    EditorApplication.delayCall += OnSelectionChange;
-                    break;
-                case PlayModeStateChange.ExitingPlayMode:
-                    break;
-            }
-        }
+		void SelectTree(BehaviourTree newTree)
+		{
+			if (!newTree)
+			{
+				ClearSelection();
+				return;
+			}
 
-        private void OnSelectionChange() {
-            if (Selection.activeGameObject) {
-                BehaviourTreeRunner runner = Selection.activeGameObject.GetComponent<BehaviourTreeRunner>();
-                if (runner) {
-                    SelectTree(runner.tree);
-                }
-            }
-        }
+			serializer = new SerializedBehaviourTree(newTree);
 
-        void SelectTree(BehaviourTree newTree) {
-            if (!newTree) {
-                ClearSelection();
-                return;
-            }
+			if (titleLabel != null)
+			{
+				string path = AssetDatabase.GetAssetPath(serializer.tree);
+				if (path == "")
+				{
+					path = serializer.tree.name;
+				}
 
-            serializer = new SerializedBehaviourTree(newTree);
+				titleLabel.text = $"TreeView ({path})";
+			}
 
-            if (titleLabel != null) {
-                string path = AssetDatabase.GetAssetPath(serializer.tree);
-                if (path == "") {
-                    path = serializer.tree.name;
-                }
-                titleLabel.text = $"TreeView ({path})";
-            }
+			overlayView.Hide();
+			treeView.PopulateView(serializer);
+			blackboardView.Bind(serializer);
+		}
 
-            overlayView.Hide();
-            treeView.PopulateView(serializer);
-            blackboardView.Bind(serializer);
-        }
+		void ClearSelection()
+		{
+			serializer = null;
+			overlayView.Show();
+			treeView.ClearView();
+		}
 
-        void ClearSelection() {
-            serializer = null;
-            overlayView.Show();
-            treeView.ClearView();
-        }
+		void ClearIfSelected(string path)
+		{
+			Debug.Assert(serializer != null, "serializer != null");
+			if (serializer == null)
+			{
+				return;
+			}
+			
+			if (AssetDatabase.GetAssetPath(serializer.tree) == path)
+			{
+				// Need to delay because this is called from a will delete asset callback
+				EditorApplication.delayCall += () => { SelectTree(null); };
+			}
+		}
 
-        void ClearIfSelected(string path) {
-            if (AssetDatabase.GetAssetPath(serializer.tree) == path) {
-                // Need to delay because this is called from a will delete asset callback
-                EditorApplication.delayCall += () => {
-                    SelectTree(null);
-                };
-            }
-        }
+		void OnNodeSelectionChanged(NodeView node)
+		{
+			inspectorView.UpdateSelection(serializer, node);
+		}
 
-        void OnNodeSelectionChanged(NodeView node) {
-            inspectorView.UpdateSelection(serializer, node);
-        }
+		private void OnInspectorUpdate()
+		{
+			treeView?.UpdateNodeStates();
+		}
 
-        private void OnInspectorUpdate() {
-            treeView?.UpdateNodeStates();
-        }
-
-        void OnToolbarNewAsset() {
-            BehaviourTree tree = EditorUtility.CreateNewTree("New Behaviour Tree", "Assets/");
-            if (tree) {
-                SelectTree(tree);
-            }
-        }
-    }
+		void OnToolbarNewAsset()
+		{
+			BehaviourTree tree = EditorUtility.CreateNewTree("New Behaviour Tree", "Assets/");
+			if (tree)
+			{
+				SelectTree(tree);
+			}
+		}
+	}
 }
