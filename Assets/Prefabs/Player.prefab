@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 5033081389904076967}
   - component: {fileID: 7299500408295848253}
   - component: {fileID: 6673951880843168428}
+  - component: {fileID: -3876130772607213585}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -184,6 +185,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_data: {fileID: 11400000, guid: ac8f15a454861564d92372c0cc874062, type: 2}
+  health: {fileID: 0}
+  mana: {fileID: 0}
+  moving: {fileID: 0}
+  attackManager: {fileID: 0}
 --- !u!114 &7450168294284348762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +247,19 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-3876130772607213585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450168294284348766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61167e1fbb72417d86a83eec7109d91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushPower: 4
 --- !u!1 &7450168295084084427
 GameObject:
   m_ObjectHideFlags: 0
