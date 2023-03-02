@@ -12,7 +12,7 @@ namespace TopDownShooter
 		[SerializeField] private InputActionAsset m_inputAsset;
 		[SerializeField] private CinemachineVirtualCamera m_virtualCamera;
 		[SerializeField] private UIPlayerHUD m_playerHUD;
-
+		public PlayerProfileSO playerProfile;
 
 		private Character m_character;
 		private MovingComponent m_characterMoving;
@@ -49,6 +49,9 @@ namespace TopDownShooter
 			m_attackManager = character.GetComponent<AttackManager>();
 			m_mana = character.GetComponent<ManaComponent>();
 			m_health = character.GetComponent<HealthComponent>();
+
+			var data = playerProfile.GetCharacterSaveData(0);
+
 		}
 
 		private void RefreshUI()
