@@ -11,7 +11,7 @@ namespace TopDownShooter
 		}
 
 
-		public void Attack(Transform target, float damage)
+		public void Attack(Transform target, float damage, float delay)
 		{
 			transform.DOKill(true);
 			transform.DOLocalRotate(new Vector3(0, -50, 0), 0.2f).SetLoops(2, LoopType.Yoyo).OnComplete(() =>

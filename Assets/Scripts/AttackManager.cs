@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TopDownShooter
 {
@@ -17,6 +18,8 @@ namespace TopDownShooter
 		public float attackDistance => m_currentSkill.attackDistance;
 
 		public bool canAttack => m_currentSkill.canAttack;
+
+		public UnityEvent onAttack;
 
 		private void Awake()
 		{
@@ -83,6 +86,8 @@ namespace TopDownShooter
 		public void Attack(Transform target)
 		{
 			m_currentSkill.Attack(target);
+
+			onAttack.Invoke();
 		}
 	}
 }

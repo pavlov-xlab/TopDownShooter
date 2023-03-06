@@ -11,6 +11,7 @@ namespace TopDownShooter
 		[SerializeField] private float m_attackDistance = 5f;
 		[SerializeField] private float m_mana = 5f;
 		[SerializeField] private float m_damage = 50f;
+		[SerializeField] private float m_delay = 0f;
 		private IDamagerComponent m_damager;
 
 		public bool canAttack => m_timer <= 0f;
@@ -41,7 +42,7 @@ namespace TopDownShooter
 
 		public void Attack(Transform target)
 		{
-			m_damager.Attack(target, m_damage);
+			m_damager.Attack(target, m_damage, m_delay);
 			m_timer = m_cooldownTime;
 		}
 
