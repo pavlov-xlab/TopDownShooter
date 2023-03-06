@@ -49,9 +49,6 @@ namespace TopDownShooter
 			m_attackManager = character.GetComponent<AttackManager>();
 			m_mana = character.GetComponent<ManaComponent>();
 			m_health = character.GetComponent<HealthComponent>();
-
-			var data = playerProfile.GetCharacterSaveData(0);
-
 		}
 
 		private void RefreshUI()
