@@ -1,0 +1,216 @@
+fileFormatVersion: 2
+guid: 96eb822c7aa5b3b4184e2db217ee0332
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Dementor_TPose(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0.16275674}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Root
+      parentName: Dementor_TPose(Clone)
+      position: {x: -0.003622331, y: 1.2534454, z: -0.15051349}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dementor_Core
+      parentName: Root
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.49610937, y: -0.5038606, z: 0.49610937, w: 0.5038606}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dementor_Mont_Front
+      parentName: Dementor_Core
+      position: {x: 0.1617971, y: -0.0119291665, z: 0.5357628}
+      rotation: {x: 0.7066263, y: 0.7069454, z: -0.015104982, w: -0.026062245}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_2
+      parentName: Dementor_Mont_Front
+      position: {x: 3.041984e-17, y: 0, z: -0.62205434}
+      rotation: {x: 1.110223e-16, y: -2.2200043e-16, z: 7.224459e-18, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dementor_Mont_Back
+      parentName: Dementor_Core
+      position: {x: -0.24943095, y: -0.012920211, z: 0.59968525}
+      rotation: {x: -0.7012728, y: 0.7025937, z: -0.0797629, w: 0.09064493}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_2_2
+      parentName: Dementor_Mont_Back
+      position: {x: 1.7165869e-18, y: 0, z: -0.57763314}
+      rotation: {x: -2.220446e-16, y: 2.4651903e-32, z: 9.8607613e-32, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dementor_Mont_Right
+      parentName: Dementor_Core
+      position: {x: 1.4876988e-16, y: -0.16547833, z: 0.49701223}
+      rotation: {x: 0.99744636, y: -6.877481e-36, z: -9.605059e-35, w: -0.07141984}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_2_3
+      parentName: Dementor_Mont_Right
+      position: {x: 2.220446e-18, y: 2.4868996e-16, z: -0.7087801}
+      rotation: {x: 2.220446e-16, y: 1.4112482e-17, z: 1.101217e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dementor_Mont_Light
+      parentName: Dementor_Core
+      position: {x: 0.00022967273, y: 0.1499426, z: 0.50633585}
+      rotation: {x: -6.122187e-17, y: 0.99996275, z: -0.008636149, w: 1.4780007e-18}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_2_4
+      parentName: Dementor_Mont_Light
+      position: {x: 7.105427e-17, y: 0.07217119, z: -0.67627895}
+      rotation: {x: -3.469447e-18, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dementor_Mont_Armor
+      parentName: Dementor_Core
+      position: {x: -0, y: 0.00033013188, z: -0.36155447}
+      rotation: {x: -0.0013385902, y: 9.629641e-35, z: 1.2890154e-37, w: 0.9999991}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dementor_Mont_HandR
+      parentName: Dementor_Mont_Armor
+      position: {x: 1.11022296e-17, y: -0.16927214, z: 0.039976962}
+      rotation: {x: 0.7947777, y: 0.09019966, z: 0.097801074, w: -0.59213805}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_1
+      parentName: Dementor_Mont_HandR
+      position: {x: 0.0593322, y: -0.039599765, z: -0.31866762}
+      rotation: {x: -0.24579445, y: 0.102375105, z: 0.05196639, w: 0.96249884}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_2_5
+      parentName: Joint_1
+      position: {x: 0.084482074, y: 0.13869722, z: -0.18804485}
+      rotation: {x: 0.09941718, y: -0.04416596, z: 0.0018356589, w: 0.99406356}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_1_2
+      parentName: Joint_2_5
+      position: {x: 0.035545144, y: 0.07247812, z: -0.18126257}
+      rotation: {x: 0.18088792, y: -0.05195137, z: 0.14052427, w: 0.9720255}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dementor_Mont_HandL
+      parentName: Dementor_Mont_Armor
+      position: {x: -1.11022296e-17, y: 0.17112596, z: 0.05017288}
+      rotation: {x: -0.14359589, y: 0.605105, z: -0.7813068, w: 0.052801114}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_1_3
+      parentName: Dementor_Mont_HandL
+      position: {x: -0.07376169, y: -0.04582593, z: -0.29566342}
+      rotation: {x: -0.355231, y: -0.10160061, z: 0.06728297, w: 0.9268017}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_2_6
+      parentName: Joint_1_3
+      position: {x: -0.10762947, y: 0.14442204, z: -0.16555847}
+      rotation: {x: 0.009100079, y: 0.0025245396, z: -0.0037136967, w: 0.99994856}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_1_4
+      parentName: Joint_2_6
+      position: {x: -0.038313184, y: 0.09291046, z: -0.16212998}
+      rotation: {x: 0.23476434, y: 0.017398095, z: -0.07231995, w: 0.9692022}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Dementor_Mont_Head
+      parentName: Dementor_Mont_Armor
+      position: {x: -0, y: -2.6645352e-17, z: -0.10336787}
+      rotation: {x: 0.012400799, y: 4.305441e-11, z: -0.000000007450456, w: 0.9999231}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Joint_3
+      parentName: Dementor_Mont_Head
+      position: {x: -2.8000852e-11, y: -7.771561e-17, z: -0.28375113}
+      rotation: {x: -1.1095623e-16, y: 4.934051e-11, z: 0.000000007450417, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
