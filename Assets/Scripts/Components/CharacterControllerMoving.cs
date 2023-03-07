@@ -11,6 +11,7 @@ namespace TopDownShooter
 		private void Awake()
 		{
 			m_characterController = GetComponent<CharacterController>();
+			m_characterController.detectCollisions = true;
 		}
 
 		public override void Move(Vector3 dir)
@@ -22,6 +23,9 @@ namespace TopDownShooter
 		{
 			throw new System.NotImplementedException();
 		}
+
+		public override float speed => m_speed;
+		public override float velocity => m_characterController.velocity.magnitude;
 
 		public override void Init(float speed)
 		{
