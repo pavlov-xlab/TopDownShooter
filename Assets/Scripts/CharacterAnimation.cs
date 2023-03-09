@@ -8,6 +8,7 @@ namespace TopDownShooter
 	{
 		private Animator m_animator;
 		private AttackManager m_attackManager;
+		private MovingComponent m_moving;
 
 		static int SpeedMoveId = Animator.StringToHash("SpeedMove");
 		static int AttackId = Animator.StringToHash("Attack");
@@ -19,6 +20,7 @@ namespace TopDownShooter
 		{
 			m_animator = GetComponent<Animator>();
 			m_attackManager = GetComponentInParent<AttackManager>();
+			m_moving = GetComponentInParent<MovingComponent>();
 		}
 
 		private void OnEnable()
@@ -36,13 +38,10 @@ namespace TopDownShooter
 			m_animator.SetTrigger(AttackId);
 		}
 
-		private void Update()
+		private void LateUpdate()
 		{
-			Vector3 curPosition = transform.position;
-			float distance = Vector3.Distance(curPosition, m_lastPosition);
-			m_animator.SetFloat(SpeedMoveId, distance > 0 ? 1f : 0f);
-
-			m_lastPosition = curPosition;
+			var velocity = Mathf.Clamp01(m_moving.velocity / m_moving.speed);
+			m_animator.SetFloat(SpeedMoveId, velocity);
 		}
 	}
 }
