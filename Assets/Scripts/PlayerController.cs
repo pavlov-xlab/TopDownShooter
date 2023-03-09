@@ -53,7 +53,10 @@ namespace TopDownShooter
 
 		private void RefreshUI()
 		{
-			m_playerHUD.Refresh(m_health.percent, m_mana.percent);
+			if (m_playerHUD)
+			{
+				m_playerHUD.Refresh(m_health.percent, m_mana.percent);
+			}
 		}
 
 		private void Update()

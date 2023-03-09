@@ -10,6 +10,15 @@ namespace TopDownShooter
 		public AudioOptions audioOptions { get; private set; } = new AudioOptions();
 
 		public int levelIndex { private set; get; }
+		public int coins { private set; get; }
+
+		public event System.Action<int> onCoinsChange;
+
+		public void SpendCoins(int value)
+		{
+			coins = Mathf.Max(0, coins - value);
+			onCoinsChange?.Invoke(coins);
+		}
 
 		public void LeveUp()
 		{
