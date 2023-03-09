@@ -221,6 +221,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4513339936642430784, guid: d8cc2973df5ccb64bb35ff5e0e8d0af0, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513339936642430784, guid: d8cc2973df5ccb64bb35ff5e0e8d0af0, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513339936642430784, guid: d8cc2973df5ccb64bb35ff5e0e8d0af0, type: 3}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5851232609826128893, guid: d8cc2973df5ccb64bb35ff5e0e8d0af0, type: 3}
       propertyPath: m_Name
       value: leaves_fall
