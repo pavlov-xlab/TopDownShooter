@@ -130,8 +130,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.6132585, b: 0.4669811, a: 1}
-  m_Intensity: 40
-  m_Range: 30
+  m_Intensity: 80
+  m_Range: 40
   m_SpotAngle: 179
   m_InnerSpotAngle: 0
   m_CookieSize: 10
