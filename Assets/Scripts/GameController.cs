@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TopDownShooter
 {
@@ -8,7 +8,8 @@ namespace TopDownShooter
 	{
 		public static GameController instance { get; private set; }
 
-		public PlayerProfileSO playerProfile;
+		[SerializeField] private PlayerProfileSO m_playerProfile;
+		[SerializeField] private GameObject m_loader;
 
 		private void Awake()
 		{
@@ -20,24 +21,51 @@ namespace TopDownShooter
 
 			instance = this;
 			DontDestroyOnLoad(gameObject);
+			
+			m_loader.SetActive(false);
 		}
 
 		private void Start()
 		{
-			var json = PlayerPrefs.GetString("PlayerProfile");
-			Debug.Log($">>> load {json}");
-			playerProfile.LoadFromJson(json);
-
-			// playerProfile.audioOptions.fxVolume;
-			// playerProfile.audioOptions.musicVolume;
+			LoadPlayerProfile();
 		}
 
 		private void OnApplicationQuit()
 		{
-			playerProfile.audioOptions.fxVolume = 0.5f;
-			var json = playerProfile.ToJson();
+			SavePlayerProfile();
+		}
+		private void LoadPlayerProfile()
+		{
+			var json = PlayerPrefs.GetString("PlayerProfile");
+			Debug.Log($">>> load {json}");
+			m_playerProfile.LoadFromJson(json);
+		}
+
+		private void SavePlayerProfile()
+		{
+			m_playerProfile.audioOptions.fxVolume = 0.5f;
+			var json = m_playerProfile.ToJson();
 			Debug.Log($">>> save {json}");
 			PlayerPrefs.SetString("PlayerProfile", json);
+		}
+
+
+		public static void LoadScene(string sceneName)
+		{
+			instance.StartCoroutine(instance.LoadSceneAsync(sceneName));
+		}
+
+		private IEnumerator LoadSceneAsync(string sceneName)
+		{
+			m_loader.SetActive(true);
+			
+			yield return SceneManager.LoadSceneAsync("Empty");
+			
+			System.GC.Collect();
+			
+			yield return SceneManager.LoadSceneAsync(sceneName);
+			
+			m_loader.SetActive(false);
 		}
 	}
 }
