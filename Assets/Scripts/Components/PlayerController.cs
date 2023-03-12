@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -12,9 +13,8 @@ namespace TopDownShooter
 		[SerializeField] private InputActionAsset m_inputAsset;
 		[SerializeField] private CinemachineVirtualCamera m_virtualCamera;
 		[SerializeField] private UIPlayerHUD m_playerHUD;
-		public PlayerProfileSO playerProfile;
-
-		private Character m_character;
+		[SerializeField] private Character m_character;
+		
 		private MovingComponent m_characterMoving;
 		private AttackManager m_attackManager;
 		private ManaComponent m_mana;
@@ -29,6 +29,11 @@ namespace TopDownShooter
 			m_moveAction = m_inputAsset.FindAction("Move");
 			m_attackAction = m_inputAsset.FindAction("Fire");
 			m_swapWeaponAction = m_inputAsset.FindAction("SwapWeapon");
+		}
+
+		private void Start()
+		{
+			Init(m_character);
 		}
 
 		private void OnEnable()
