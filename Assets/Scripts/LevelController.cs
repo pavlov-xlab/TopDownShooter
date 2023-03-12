@@ -24,6 +24,8 @@ namespace TopDownShooter.Controllers
 
 		private void Start()
 		{
+			UICore.current.Swap("Gameplay");
+
 			var player = SpawnPlayer();
 			m_playerController.Init(player);
 		}

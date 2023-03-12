@@ -33,7 +33,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 8730270792832515173}
-    m_Position: {x: 250, y: 30, z: 0}
+    m_Position: {x: 290, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5890656378219203579}
     m_Position: {x: 30, y: -80, z: 0}
@@ -94,6 +94,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: Attack
     m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Blend
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -209,7 +215,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -1498010087492872569, guid: 9a3ce01f3e5868745bb3aac509cebf92, type: 3}
+  m_Motion: {fileID: -1498010087492872569, guid: 9eeaa90915925874b89b1f2e8b1e8e21, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
