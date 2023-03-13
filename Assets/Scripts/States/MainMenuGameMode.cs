@@ -14,7 +14,7 @@
 
 		public void LoadLevel()
 		{
-			GameController.LoadScene("SampleScene");
+			GameController.LoadScene("Level_1");
 		}
 	}
 }
